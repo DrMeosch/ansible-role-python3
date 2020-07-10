@@ -1,0 +1,28 @@
+---
+- name: installing python36 on Amazon Linux 2018.03
+  block:
+    - name: install python36 and pip36
+      package:
+        name:
+          - python36
+          - python36-pip
+        state: latest
+    - name: make a link for pip-3.6
+      file:
+        state: hard
+        src: /usr/bin/pip-3.6
+        dest: /usr/bin/pip3
+  when:
+    - ansible_distribution == "Amazon"
+    - ansible_distribution_version == "NA"
+
+- name: install python3
+  package:
+    name:
+      - python3
+      - python3-pip
+    state: latest
+  when: >
+    ( ansible_distribution != "Amazon" )
+    or
+    ( ansible_distribution_version == "2")

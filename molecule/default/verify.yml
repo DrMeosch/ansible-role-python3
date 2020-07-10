@@ -1,0 +1,10 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: check python3 and pip3 in env
+      shell: python3 --version && pip3 -V
+      register: result
+    - name: python assertion
+      assert:
+        that: result is succeeded
