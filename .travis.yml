@@ -21,6 +21,9 @@ install:
   - pip install molecule yamllint ansible-lint docker
 
 script:
+  # https://stackoverflow.com/questions/62363901/ansible-msg-failed-to-create-temporary-directory-in-some-cases-fatal
+  - mv /usr/bin/sleep /usr/bin/sleep.dist
+  - ln -s /bin/true /usr/bin/sleep
   # Run tests.
   - molecule --version
   - ansible --version
