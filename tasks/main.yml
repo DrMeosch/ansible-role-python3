@@ -20,7 +20,7 @@
   package:
     name:
       - python3
-      - python3-pip
+      - "{{ 'python-pip' if ansible_distribution == 'Archlinux' else 'python3-pip' }}"
     state: latest
   when: >
     ( ansible_distribution != "Amazon" )
